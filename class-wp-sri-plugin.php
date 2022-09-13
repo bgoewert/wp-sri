@@ -455,12 +455,8 @@ class WP_SRI_Plugin {
 
 		// Define help tab content.
 		$content  = '<p>';
-		$content .= sprintf(
-			// translators: The placeholders are for open/close <code> tags.
-			esc_html__( 'This page lets you manage automatic integrity checks of subresources that pages on your site load. Subresources are assets that are referenced from within %1$sscript%2$s or %1$slink%2$s elements, such as JavaScript files or stylesheets. When your page loads such assets from servers other than your own, as is often done with Content Delivery Networks (CDNs), you can verify that the requested file contains exactly the code you expect it to by adding an integrity check.', 'wp-sri' ),
-			'<code>',
-			'</code>'
-		);
+		// translators: The placeholders are for open/close <code> tags.
+		$content .= sprintf( esc_html__( 'This page lets you manage automatic integrity checks of subresources that pages on your site load. Subresources are assets that are referenced from within %1$s<script>%2$s or %1$s<link>%2$s elements, such as JavaScript files or stylesheets. When your page loads such assets from servers other than your own, as is often done with Content Delivery Networks (CDNs), you can verify that the requested file contains exactly the code you expect it to by adding an integrity check.', 'wp-sri' ), '<code>', '</code>' );
 		$content .= '</p>';
 		$content .= '<ul>';
 		$content .= '<li>' . esc_html__( 'The "URL" column shows you the Web address of the resource being loaded.', 'wp-sri' ) . '</li>';
@@ -471,8 +467,10 @@ class WP_SRI_Plugin {
 		$content .= '<ul>';
 		$content .= '<li>' . esc_html__( 'If some pages are not loading correctly, use the developer tools in your Web browser to see if any assets are being blocked and need to be excluded. Excluding an asset means the resource will be added to your pages without the SRI attributes, but WP-SRI will still remember its hash.', 'wp-sri' ) . '</li>';
 		$content .= '</ul>';
-		// translators: The placeholders are open/close anchor tags for hyperlinking to the Mozilla documentation on Subresource Integrity, see https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity.
-		$content .= '<p>' . sprintf( esc_html__( 'Learn more about %1$sSubresource Integrity%2$s features.', 'wp-sri' ), '<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">', '</a>' ) . '</p>';
+		// translators: The placeholders are open/close anchor tags for hyperlinking to the Mozilla documentation on Subresource Integrity, see https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity.
+		$content .= '<p>' . sprintf( esc_html__( 'Learn more about %1$sSubresource Integrity%2$s features.', 'wp-sri' ), '<a href="https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity">', '</a>' ) . '</p>';
+
+		// Add the help tab.
 		$screen->add_help_tab(
 			array(
 				'id'      => self::$prefix . 'help_tab',
